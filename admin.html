@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="img/logo.png" class="active">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="insight.html" >Insight Dashboard</a></li>
+                <li><a href="admin.html" >Admin Dashboard</a></li>
+                <li><a href="employee.html">Employee Dashboard</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <div class="user-profile">
+                <div class="user-info">
+                    <img src="#" class="user-avatar" alt="Admin Avatar">
+                    <span class="username">Admin</span>
+                    <span class="arrow-down"></span>
+                </div>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a href="#">Log Out</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <div class="overview">
+            <div class="card">
+                <h3>Total Users</h3>
+                <canvas id="userChart"></canvas>
+            </div>
+            <div class="card">
+                <h3>Active Projects</h3>
+                <canvas id="projectChart"></canvas>
+            </div>
+            <div class="card">
+                <h3>Department Distribution</h3>
+                <canvas id="adminDepartmentChart"></canvas>
+            </div>
+        </div>
+
+        <footer>
+            &copy; 2024 Admin Dashboard
+        </footer>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

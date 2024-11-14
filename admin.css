@@ -1,0 +1,143 @@
+/* Resetting some basic styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Apple', Arial, sans-serif;
+    background-color: #20232A;
+    color: #E8E8E8;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #2C2F3A;
+    padding: 20px;
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.4);
+}
+
+.sidebar .logo img {
+    width: 100%; /* Adjust the width as needed */
+    max-width: 120px; /* Set a maximum width to prevent it from growing too large */
+    height: auto; /* Maintain aspect ratio */
+    margin: 0 auto; /* Center the logo horizontally */
+    display: block; /* Ensure it displays as a block for centering */
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar nav ul li {
+    margin: 20px 0;
+}
+
+.sidebar nav ul li a {
+    color: #B0BEC5;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 12px 20px;
+    border-radius: 8px;
+    display: block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidebar nav ul li a:hover {
+    background-color: #37414F;
+    color: #61DAFB;
+}
+
+.sidebar nav ul li a.active {
+    background-color: #61DAFB;
+    color: #20232A;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+    width: calc(100% - 250px);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+header {
+    display: flex;
+    justify-content: flex-end;
+    background-color: #20232A;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.user-profile {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: #3A3F50;
+    border-radius: 10px;
+    width: 160px;
+    list-style: none;
+    padding: 0;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #4A4F63;
+    color: #E8E8E8;
+}
+
+.show-dropdown {
+    display: block;
+}
+
+.overview {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 80px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background-color: #282C34;
+    padding: 20px;
+    border-radius: 10px;
+    flex: 1;
+    margin: 10px;
+    min-width: 300px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.card h3 {
+    font-size: 18px;
+    color: #61DAFB;
+    margin-bottom: 15px;
+}
+
+footer {
+    margin-top: auto;
+    text-align: center;
+    padding: 15px;
+    font-size: 12px;
+    color: #B0BEC5;
+    background-color: #2C2F3A;
+}

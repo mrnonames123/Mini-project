@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="sign up.css">
+    <script>
+        function showForm() {
+            const role = document.querySelector('input[name="role"]:checked').value;
+            document.getElementById('employeeForm').style.display = role === 'employee' ? 'block' : 'none';
+            document.getElementById('adminForm').style.display = role === 'admin' ? 'block' : 'none';
+        }
+    </script>
+    <style>
+        /* CSS styles for better visibility and layout */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #262626;
+            margin: 0;
+        }
+        .container {
+            background: #262626;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            color: white;
+        }
+        h2 { margin-bottom: 20px; }
+        .role-selection {
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label { display: block; margin-bottom: 5px; }
+        .form-group input {
+            width: 75%;
+            padding: 8px;
+            border-radius: 4px;
+        }
+        .form-group input[type="submit"] {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Sign Up</h2>
+        <div class="role-selection">
+            <label><input type="radio" name="role" value="employee" onclick="showForm()" checked> Employee</label>
+            <label><input type="radio" name="role" value="admin" onclick="showForm()"> Admin</label>
+        </div>
+
+        <!-- Employee Form -->
+        <form id="employeeForm">
+            <div class="form-group">
+                <label for="employeeName">Employee Name</label>
+                <input type="text" id="employeeName" name="employeeName" required>
+            </div>
+            <div class="form-group">
+                <label for="employeeId">Employee ID</label>
+                <input type="text" id="employeeId" name="employeeId" required>
+            </div>
+            <div class="form-group">
+                <label for="employeeEmail">Employee Email</label>
+                <input type="email" id="employeeEmail" name="employeeEmail" required>
+            </div>
+            <div class="form-group">
+                <label for="department">Department</label>
+                <input type="text" id="department" name="department" required>
+            </div>
+            <div class="form-group">
+                <label for="designationId">Designation ID</label>
+                <input type="text" id="designationId" name="designationId" required>
+            </div>
+            <div class="form-group">
+                <label for="employeePassword">Password</label>
+                <input type="password" id="employeePassword" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="employeeConfirmPassword">Confirm Password</label>
+                <input type="password" id="employeeConfirmPassword" name="confirmPassword" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Register">
+            </div>
+        </form>
+
+        <!-- Admin Form -->
+        <form id="adminForm" style="display: none;">
+            <div class="form-group">
+                <label for="adminId">Admin ID</label>
+                <input type="text" id="adminId" name="adminId" required>
+            </div>
+            <div class="form-group">
+                <label for="adminName">Admin Name</label>
+                <input type="text" id="adminName" name="adminName" required>
+            </div>
+            <div class="form-group">
+                <label for="adminEmail">Admin Email</label>
+                <input type="email" id="adminEmail" name="adminEmail" required>
+            </div>
+            <div class="form-group">
+                <label for="adminPassword">Password</label>
+                <input type="password" id="adminPassword" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="adminConfirmPassword">Confirm Password</label>
+                <input type="password" id="adminConfirmPassword" name="confirmPassword" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Register">
+            </div>
+        </form>
+        <div id="successModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); justify-content: center; align-items: center;">
+            <div style="background: #fff; padding: 20px; border-radius: 8px; text-align: center; max-width: 400px; width: 100%;">
+                <h3>Registration Successful!</h3>
+                <p>Your account has been created successfully. You can now log in using your credentials.</p>
+                <button onclick="closeModal()">OK</button>
+            </div>
+        </div>
+
+       <!-- Link to go back to Login Page -->
+       <div class="form-group">
+        <a href="loginpage.html" style="color: #fff; text-decoration: none; font-size: 16px;">Back to Login</a>
+    </div>
+</div>
+
+    <!-- JavaScript to handle form submission -->
+    <script>
+// Function to show the success modal
+function showModal() {
+    document.getElementById('successModal').style.display = 'flex';
+}
+
+// Function to close the modal
+function closeModal() {
+    document.getElementById('successModal').style.display = 'none';
+    window.location.href = "loginpage.html"; // Redirect to login page if needed
+}
+
+// Employee form submit handler
+document.getElementById('employeeForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = document.getElementById('employeeName').value;
+    const id = document.getElementById('employeeId').value;
+    const email= document.getElementById('employeeEmail').value;
+    const department = document.getElementById('department').value;
+    const designationId = document.getElementById('designationId').value;
+    const password = document.getElementById('employeePassword').value;
+
+    const response = await fetch('http://localhost:5000/api/users/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, id, email, department, designationId, password, role: 'employee' })
+    });
+
+    const data = await response.json();
+    if (response.ok) {
+        showModal();  // Show the success modal on successful registration
+    } else {
+        alert(data.message); // Show an error if registration fails
+    }
+});
+
+// Admin form submit handler
+document.getElementById('adminForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = document.getElementById('adminName').value;
+    const email = document.getElementById('adminEmail').value;
+    const id = document.getElementById('adminId').value;
+    const password = document.getElementById('adminPassword').value;
+
+    const response = await fetch('http://localhost:5000/api/users/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, id, password, role: 'admin' })
+    });
+
+    const data = await response.json();
+    if (response.ok) {
+        showModal();  // Show the success modal on successful registration
+    } else {
+        alert(data.message); // Show an error if registration fails
+    }
+});
+
+    </script>
+</body>
+</html>

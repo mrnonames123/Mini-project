@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="loginpage.css">
+</head>
+<body>
+    <div class="container">
+        <form class="login-form" id="loginForm">
+            <h1>Log In</h1>
+
+            <!-- Email input -->
+            <input type="email" placeholder="Email" id="email" required>
+
+            <!-- Password input -->
+            <input type="password" placeholder="Password" id="password" required>
+
+            <!-- Role selection (Employee or Admin) -->
+            <div class="role-selection">
+                <label>
+                    <input type="radio" name="role" value="employee" id="employeeRole" checked>
+                    Employee
+                </label>
+                <label>
+                    <input type="radio" name="role" value="admin" id="adminRole">
+                    Admin
+                </label>
+            </div>
+
+            <!-- Forgot Password Link -->
+            <a href="#" class="forgot-password">Forgot password?</a>
+
+            <!-- Submit Button -->
+            <button type="submit" id="loginButton">Log In</button>
+
+            <!-- Social Login Section (Google) -->
+            <p class="or-text">Or</p>
+            <div class="social-login">
+                <a href="#" class="social-icon google">
+                    <img src="https://cdn.icon-icons.com/icons2/3658/PNG/512/website_web_find_search_google_icon_228429.png" alt="Google Logo" style="width: 30px; height: 30px; vertical-align: middle;">
+                </a>
+            </div>
+
+            <!-- Sign Up Link -->
+            <p class="signup">Don't have an account? <a href="sign up.html" id="signUpLink">Sign Up</a></p>
+        </form>
+    </div>
+
+    <script>
+        // Handle login form submission
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Sample login credentials
+            const sampleEmail = "mathewbinoymb@gmail.com";
+            const samplePassword = "password123";
+
+             
+
+            // Get input values
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const role = document.querySelector('input[name="role"]:checked').value;
+
+            // Check if the entered credentials match the sample credentials
+            if (email === sampleEmail && password === samplePassword) {
+                if (role === "admin") {
+                    window.location.href = "insight.html"; // Redirect to Admin Dashboard
+                } else {
+                    window.location.href = "insight.html"; // Redirect to Employee Dashboard
+                }
+            } else {
+                alert("Invalid email or password. Please try again.");
+            }
+        });
+    </script>
+</body>
+</html>

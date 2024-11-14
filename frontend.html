@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Grading Dashboard</title>
+    <link rel="stylesheet" href="stylesdash.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Include Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="insight.html"> Insights Dashboard</a></li>
+                <li><a href="employee.html">Employee Board</a></li>
+                <li><a href="admin.html">Admin Board</a></li>
+                
+            </ul>
+        </nav>
+    </div>
+    <div class="main-content">
+        <header>
+            <div class="search-container">
+                <input type="text" placeholder="Search here...">
+            </div>
+            <!-- User Profile Dropdown -->
+            <div class="user-profile">
+                <div class="user-info" onclick="toggleDropdown()">
+                    <img src="path/to/avatar.png" alt="User Avatar" class="user-avatar">
+                    <span class="username">John Doe</span>
+                    <i class="arrow-down"></i>
+                </div>
+                <ul class="dropdown-menu" id="dropdown-menu">
+                    <li><a href="#">My Profile</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a href="#">My Subscription</a></li>
+                    <li><a href="#">Log Out</a></li>
+                </ul>
+            </div>
+        </header>
+        <section class="overview">
+            <div class="card performance-score">
+                <h3>Average Employee Performance Score</h3>
+                <!-- Canvas element for the chart -->
+                <canvas id="performanceChart"></canvas>
+            </div>
+            <div class="card strengths-weaknesses">
+                <h1>Strengths & Weaknesses</h1>
+                <br><h1>Strengths</h1>
+                <p>Details about strengths:</p>
+                <h4>Efficient, Productive, Happy</h4><br>
+                <h1>Weaknesses</h1>
+                <p>Details about weaknesses:</p>
+                <h4>Less Accomplishment, Low Esteem</h4>
+            </div>
+            <div class="card progress">
+                <div class="progress-circle">
+                    <div class="percentage">75%</div>
+                </div>
+                <p>Overall Grading Process Completion</p>
+                <button>More Details</button>
+            </div>
+        </section>
+        <section class="top-performers">
+            <h3>Top Performers</h3>
+            <div class="performer">
+                <div class="avatar">
+                    <img src="https://w7.pngwing.com/pngs/782/115/png-transparent-avatar-boy-man-avatar-vol-1-icon-thumbnail.png" alt="Avatar Image" style="width: 50px; height: 50px; border-radius: 50%;">    
+                </div>
+                <p>Johnson</p>
+                <div class="score">53%</div>
+            </div>
+            <div class="performer">
+                <div class="avatar">
+                    <img src="https://w7.pngwing.com/pngs/782/115/png-transparent-avatar-boy-man-avatar-vol-1-icon-thumbnail.png" alt="Avatar Image" style="width: 50px; height: 50px; border-radius: 50%;">
+                </div>
+                <p>Paul</p>
+                <div class="score">86%</div>
+            </div>
+        </section>
+        <section class="employee-grades">
+            <h3>Employee Grades</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Project Name</th>
+                        <th>Project Lead</th>
+                        <th>Progress</th>
+                        <th>Status</th>
+                        <th>Due Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Bender project</td>
+                        <td>Johnson</td>
+                        <td>
+                            <div class="progress-bar" data-progress="53"></div>
+                        </td>
+                        <td class="status in-progress">In progress</td>
+                        <td>06 Jan 2024</td>
+                    </tr>
+                    <tr>
+                        <td>Batman</td>
+                        <td>William</td>
+                        <td>
+                            <div class="progress-bar" data-progress="24"></div>
+                        </td>
+                        <td class="status pending">Pending</td>
+                        <td>06 Jan 2024</td>
+                    </tr>
+                    <!-- More rows here -->
+                </tbody>
+            </table>
+            <button>Export Report</button>
+        </section>
+        <section class="scheduled-reviews">
+            <h3>Scheduled Employee Review</h3>
+            <ul>
+                <li><span class="date">20 Mon</span> - Review with Project Leads <span class="time">10:00 AM</span></li>
+                <li><span class="date">21 Mon</span> - Review with the HRs <span class="time">10:00 AM</span></li>
+                <!-- More events here -->
+            </ul>
+        </section>
+    </div>
+
+    <!-- JavaScript to create the chart -->
+    <script>
+        // Initialize the Chart.js chart
+        const ctx = document.getElementById('performanceChart').getContext('2d');
+        const performanceChart = new Chart(ctx, {
+            type: 'bar',  // Type of chart you want to create
+            data: {
+                labels: ['Average Score'],  // Labels for the x-axis
+                datasets: [{
+                    label: 'Employee Performance Score',
+                    data: [77.865,88.6],  // Data for the chart
+                    backgroundColor: '#FF8C00',  // Bar color
+                    borderColor: '#FF8C00',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100  // Maximum value for y-axis
+                    }
+                }
+            }
+        });
+    </script>
+    <script>
+        function toggleDropdown() {
+            const dropdown = document.getElementById('dropdown-menu');
+            dropdown.classList.toggle('show-dropdown');
+        }
+    
+        // Close the dropdown menu if clicked outside
+        window.onclick = function(event) {
+            if (!event.target.closest('.user-profile')) {
+                const dropdown = document.getElementById('dropdown-menu');
+                dropdown.classList.remove('show-dropdown');
+            }
+        }
+    </script>
+</body>
+</html>
